@@ -1,0 +1,12 @@
+public
+
+# C#
+bin
+obj
+.vs
+*.suo
+
+# TypeScript
+node_modules
+# Local Netlify folder
+.netlify

@@ -1,0 +1,42 @@
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Japanese Reverse Geocoding Sample</title>
+    <script src="index.js"></script>
+    <script>
+        var reverseGeocoding = require("japaneseReverseGeocoding");
+        function getLatitude() {
+            return parseFloat(document.getElementById("latitude").value);
+        }
+        function getLongitude() {
+            return parseFloat(document.getElementById("longitude").value);
+        }
+        function fetchReverseGeocoding() {
+            reverseGeocoding("./data", getLatitude(), getLongitude())
+                .then(address => {
+                    if(address == null){
+                        document.getElementById("result").innerHTML = "<p>not found address</p>";
+                    }else{
+                        document.getElementById("result").innerHTML = `<p>${address.prefecture}${address.city ?? ""}${address.ward ?? ""}${address.town ?? ""}</p>`
+                    }
+                });
+        }
+    </script>
+</head>
+
+<body>
+    <h2>Japanese Reverse Geocoding Sample</h2>
+
+    <input id="latitude" type="text" value="35.681615" />
+    <input id="longitude" type="text" value="139.764956" />
+    <button onclick="fetchReverseGeocoding();">Reverse Geocoding</button>
+
+    <div id="result"></div>
+
+    <div>
+        <p>See Github: <a href="https://github.com/MeilCli/JRGeocoding">MeilCli/JRGeocoding</a></p>
+    </div>
+</body>
+
+</html>
